@@ -1,7 +1,14 @@
 import random
 
-#Introduction and Setup
-print "Welcome to Greatest Warrior!"
+#Title Screen
+titleScreen = True
+while titleScreen:
+	print "G R E A T E S T   W A R R I O R"
+	print "     Press Enter to Start"
+	Start = raw_input()
+	if Start == "":
+		titleScreen = False
+		
 inventory = {
 	"Coins":0,
 	"Equipped Weapon":[],
@@ -9,16 +16,18 @@ inventory = {
 	"Bag":[]
 }
 
+shopItems = ["Wooden Shield: 15 Coins", "Bronze Shield: 20 Coins", "Iron Shield: 25 Coins", "Steel Shield: 35 Coins", "Boss Shield: 50 Coins", "Stick: 5 Coins", "Wooden Sword: 15 Coins", "Iron Sword: 30 Coins", "Steel Sword: 40 Coins", "Great Sword: 50 Coins"]
+
 Defense = 0
 Attack = 0
-x = True
+alive = True
 
 #Start Menu
-while x:
+while alive:
 	decision = raw_input("Stats, Inventory, Fight, or Shop?").lower()
 	if Defense >= 500 & Attack >= 500:
 		print "You are the greatest warrior!"
-		x = False
+		alive = False
 
 	#Stats Menu
 	elif decision == "stats":
@@ -63,17 +72,17 @@ while x:
 		if opponent == 50:
 			print "Chuck Norris has appeared!"
 			print "You were slain by Chuck Norris"
-			x = False
+			alive = False
 
 		#Giant Enemy
 		elif opponent > 48:
 			print "A Giant has appeared!"
 			if Defense > 100 & Attack > 100:
 				print "You are the Greatest Warrior in all the Land!"
-				x = False
+				alive = False
 			else:
 				print "You were slain by the Giant!"
-				x = False
+				alive = False
 
 		#Knight Enemy
 		elif opponent > 44:
@@ -235,12 +244,140 @@ while x:
 	#Shop Menu
 	elif decision == "shop":
 		shop1 = raw_input("Buy or Sell?").lower()
+		
+		#Shop Buy Menu
 		if shop1 == "buy":
-			print shop
-			shop2 = raw_input("Which item would you like to buy?")
+			print shopItems
+			shop2 = raw_input("Which item would you like to buy?").lower()
+			if ((shop2 == "wooden shield") & (inventory["Coins"] >= 15)):
+				inventory["Bag"].append("Wooden Shield")
+				inventory["Coins"] -= 15
+				print "-" + str(15) + " Coins"
+			elif ((shop2 == "bronze shield") & (inventory["Coins"] >= 20)):
+				inventory["Bag"].append("Bronze Shield")
+				inventory["Coins"] -= 20
+				print "-" + str(20) + " Coins"
+			elif ((shop2 == "iron shield") & (inventory["Coins"] >= 25)):
+				inventory["Bag"].append("Iron Shield")
+				inventory["Coins"] -= 25
+				print "-" + str(25) + " Coins"
+			elif ((shop2 == "steel shield") & (inventory["Coins"] >= 35)):
+				inventory["Bag"].append("Steel Shield")
+				inventory["Coins"] -= 35
+				print "-" + str(35) + " Coins"
+			elif ((shop2 == "boss shield") & (inventory["Coins"] >= 50)):
+				inventory["Bag"].append("Boss Shield")
+				inventory["Coins"] -= 50
+				print "-" + str(50) + " Coins"
+			elif ((shop2 == "stick") & (inventory["Coins"] >= 5)):
+				inventory["Bag"].append("Stick")
+				inventory["Coins"] -= 5
+				print "-" + str(addcoin6) + " Coins"
+			elif ((shop2 == "wooden sword") & (inventory["Coins"] >= 15)):
+				inventory["Bag"].append("Wooden Sword")
+				inventory["Coins"] -= 15
+				print "-" + str(15) + " Coins"
+			elif ((shop2 == "iron sword") & (inventory["Coins"] >= 30)):
+				inventory["Bag"].append("Iron Sword")
+				inventory["Coins"] -= 30
+				print "-" + str(30) + " Coins"
+			elif ((shop2 == "steel sword") & (inventory["Coins"] >= 40)):
+				inventory["Bag"].append("Steel Sword")
+				inventory["Coins"] -= 40
+				print "-" + str(40) + " Coins"
+			elif ((shop2 == "great sword") & (inventory["Coins"] >= 50)):
+				inventory["Bag"].append("Great Sword")
+				inventory["Coins"] -= 50
+				print "-" + str(50) + " Coins"
+			else:
+				print "You do not have enough Coins or the item isn't sold here"
+				
+		#Shop Sell Menu  
 		elif shop1 == "sell":
 			print inventory["Bag"]
-			shop3 = raw_input("Which item would you like to sell?")
+			shop3 = raw_input("Which item would you like to sell?").lower()
+			if ((shop3 == "wooden shield") & ("Wooden Shield" in inventory["Bag"])):
+				inventory["Bag"].remove("Wooden Shield")
+				inventory["Coins"] += 10
+				print "+" + str(10) + " Coins"
+			elif ((shop3 == "bronze shield") & ("Bronze Shield" in inventory["Bag"])):
+				inventory["Bag"].remove("Bronze Shield")
+				inventory["Coins"] += 15
+				print "+" + str(15) + " Coins"
+			elif ((shop3 == "iron shield") & ("Iron Shield" in inventory["Bag"])):
+				inventory["Bag"].remove("Iron Shield")
+				inventory["Coins"] += 20
+				print "+" + str(20) + " Coins"
+			elif ((shop3 == "steel shield") & ("Steel Shield" in inventory["Bag"])):
+				inventory["Bag"].remove("Steel Shield")
+				inventory["Coins"] += 25
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "boss shield") & ("Boss Shield" in inventory["Bag"])):
+				inventory["Bag"].remove("Boss Shield")
+				inventory["Coins"] += 30
+				print "+" + str(30) + " Coins"
+			elif ((shop3 == "stick") & ("Stick" in inventory["Bag"])):
+				inventory["Bag"].remove("Stick")
+				inventory["Coins"] += 5
+				print "+" + str(5) + " Coins"
+			elif ((shop3 == "wooden sword") & ("Wooden Sword" in inventory["Bag"])):
+				inventory["Bag"].remove("Wooden Sword")
+				inventory["Coins"] += 10
+				print "+" + str(10) + " Coins"
+			elif ((shop3 == "iron sword") & ("Iron Sword" in inventory["Bag"])):
+				inventory["Bag"].remove("Iron Sword")
+				inventory["Coins"] += 15
+				print "+" + str(15) + " Coins"
+			elif ((shop3 == "steel sword") & ("Steel Sword" in inventory["Bag"])):
+				inventory["Bag"].remove("Steel Sword")
+				inventory["Coins"] += 20
+				print "+" + str(20) + " Coins"
+			elif ((shop3 == "sharp fang") & ("Sharp Fang" in inventory["Bag"])):
+				inventory["Bag"].remove("Sharp Fang")
+				inventory["Coins"] += 4
+				print "+" + str(4) + " Coins"
+			elif ((shop3 == "fur coat") & ("Fur Coat" in inventory["Bag"])):
+				inventory["Bag"].remove("Fur Coat")
+				inventory["Coins"] += 8
+				print "+" + str(8) + " Coins"
+			elif ((shop3 == "raw wolf meat") & ("Raw Wolf Meat" in inventory["Bag"])):
+				inventory["Bag"].remove("Raw Wolf Meat")
+				inventory["Coins"] += 2
+				print "+" + str(2) + " Coins"
+			elif ((shop3 == "helmet") & ("Helmet" in inventory["Bag"])):
+				inventory["Bag"].remove("Helmet")
+				inventory["Coins"] += 10
+				print "+" + str(10) + " Coins"
+			elif ((shop3 == "battleworn sword") & ("Battleworn Sword" in inventory["Bag"])):
+				inventory["Bag"].remove("Battleworn Sword")
+				inventory["Coins"] += 10
+				print "+" + str(10) + " Coins"
+			elif ((shop3 == "spear") & ("Spear" in inventory["Bag"])):
+				inventory["Bag"].remove("Spear")
+				inventory["Coins"] += 15
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "black blade") & ("Black Blade" in inventory["Bag"])):
+				inventory["Bag"].remove("Black Blade")
+				inventory["Coins"] += 15
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "iron helmet") & ("Iron Helmet" in inventory["Bag"])):
+				inventory["Bag"].remove("Iron Helmet")
+				inventory["Coins"] += 15
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "steel helmet") & ("Steel Helmet" in inventory["Bag"])):
+				inventory["Bag"].remove("Steel Helmet")
+				inventory["Coins"] += 20
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "steel longsword") & ("Steel Longsword" in inventory["Bag"])):
+				inventory["Bag"].remove("Steel Longsword")
+				inventory["Coins"] += 20
+				print "+" + str(25) + " Coins"
+			elif ((shop3 == "steel chestplate") & ("Steel Chestplate" in inventory["Bag"])):
+				inventory["Bag"].remove("Steel Chestplate")
+				inventory["Coins"] += 20
+				print "+" + str(25) + " Coins"
+			else:
+			  print "I don't accept that here!"
 
 	#Incase Input Isn't A Wanted Input
 	else:
